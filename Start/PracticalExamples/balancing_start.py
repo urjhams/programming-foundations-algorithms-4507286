@@ -2,10 +2,20 @@
 # Use a stack to see if a programming statement is balanced
 
 
-def is_balanced(thestr):
+def is_balanced(str):
     # TODO: Your code goes here
-                
-    return True
+    stack = []
+    for char in str:
+        if char in ['(','[','{']:
+            stack.append(char)
+        if char in [')',']','}']:
+            if len(stack) == 0: return False
+            poping = stack.pop()
+            if poping == '(' and char != ')': return False
+            if poping == '[' and char != ']': return False
+            if poping == '{' and char != '}': return False
+    
+    return len(stack) == 0
 
 test_statements = [
     "print('Hello World!')",
